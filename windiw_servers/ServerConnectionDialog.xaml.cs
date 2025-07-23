@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows;
 using windiw_servers.Services;
@@ -214,5 +215,14 @@ namespace windiw_servers
         public string ServerUrl { get; set; } = "http://localhost:8080";
         public bool AutoConnect { get; set; } = false;
         public bool AutoRefresh { get; set; } = true;
+    }
+
+    // Метод расширения для совместимости с .NET Framework
+    public static class DictionaryExtensions
+    {
+        public static TValue GetValueOrDefault<TKey, TValue>(this Dictionary<TKey, TValue> dictionary, TKey key, TValue defaultValue = default(TValue))
+        {
+            return dictionary.ContainsKey(key) ? dictionary[key] : defaultValue;
+        }
     }
 }
