@@ -260,9 +260,4 @@ namespace ServerManager.Controllers
             }
         }
     }
-
-    public class ExecuteCommandRequest
-    {
-        public string Command { get; set; } = "";
-    }
 }
