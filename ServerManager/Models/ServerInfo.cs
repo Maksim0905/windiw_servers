@@ -15,7 +15,7 @@ namespace ServerManager.Models
         public string Address { get; set; } = "";
         
         [Range(1, 65535)]
-        public int Port { get; set; } = 22;
+        public int Port { get; set; } = 3389; // RDP порт для Windows
         
         [StringLength(500)]
         public string Description { get; set; } = "";
@@ -70,7 +70,7 @@ namespace ServerManager.Models
         [Required]
         public string Address { get; set; } = "";
         
-        public int Port { get; set; } = 22;
+        public int Port { get; set; } = 3389;
         
         public string Description { get; set; } = "";
         

@@ -6,6 +6,9 @@ using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Добавляем поддержку Windows Services
+builder.Services.AddWindowsService();
+
 // Настройка логирования
 Log.Logger = new LoggerConfiguration()
     .WriteTo.Console()
@@ -19,7 +22,7 @@ builder.Services.AddDbContext<ServerContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection") ?? "Data Source=servers.db"));
 
 // Регистрация сервисов
-builder.Services.AddScoped<ServerService>();
+builder.Services.AddScoped<WindowsServerService>();
 builder.Services.AddHostedService<BackgroundMonitoringService>();
 
 // Настройка API контроллеров

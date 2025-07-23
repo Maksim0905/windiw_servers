@@ -22,8 +22,8 @@ namespace ServerManager.Services
             {
                 try
                 {
-                    using var scope = _serviceProvider.CreateScope();
-                    var serverService = scope.ServiceProvider.GetRequiredService<ServerService>();
+                                    using var scope = _serviceProvider.CreateScope();
+                var serverService = scope.ServiceProvider.GetRequiredService<WindowsServerService>();
                     
                     _logger.LogInformation("Starting automated server status check");
                     await serverService.CheckAllServersStatusAsync();

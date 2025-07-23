@@ -25,7 +25,7 @@ namespace windiw_servers.Services
         {
             try
             {
-                var url = $"{_baseUrl}/api/servers";
+                var url = $"{_baseUrl}/api/windowsservers";
                 
                 if (filter != null)
                 {
@@ -71,7 +71,7 @@ namespace windiw_servers.Services
         {
             try
             {
-                var response = await _httpClient.GetAsync($"{_baseUrl}/api/servers/{id}");
+                var response = await _httpClient.GetAsync($"{_baseUrl}/api/windowsservers/{id}");
                 
                 if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
                     return null;
@@ -97,7 +97,7 @@ namespace windiw_servers.Services
                 var json = JsonSerializer.Serialize(request);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
                 
-                var response = await _httpClient.PostAsync($"{_baseUrl}/api/servers", content);
+                var response = await _httpClient.PostAsync($"{_baseUrl}/api/windowsservers", content);
                 response.EnsureSuccessStatusCode();
                 
                 var responseJson = await response.Content.ReadAsStringAsync();
@@ -121,7 +121,7 @@ namespace windiw_servers.Services
                 var json = JsonSerializer.Serialize(request);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
                 
-                var response = await _httpClient.PutAsync($"{_baseUrl}/api/servers/{id}", content);
+                var response = await _httpClient.PutAsync($"{_baseUrl}/api/windowsservers/{id}", content);
                 
                 if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
                     return null;
@@ -144,7 +144,7 @@ namespace windiw_servers.Services
         {
             try
             {
-                var response = await _httpClient.DeleteAsync($"{_baseUrl}/api/servers/{id}");
+                var response = await _httpClient.DeleteAsync($"{_baseUrl}/api/windowsservers/{id}");
                 
                 if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
                     return false;
@@ -162,7 +162,7 @@ namespace windiw_servers.Services
         {
             try
             {
-                var response = await _httpClient.PostAsync($"{_baseUrl}/api/servers/{id}/check-status", null);
+                var response = await _httpClient.PostAsync($"{_baseUrl}/api/windowsservers/{id}/check-status", null);
                 response.EnsureSuccessStatusCode();
                 
                 var json = await response.Content.ReadAsStringAsync();
@@ -180,7 +180,7 @@ namespace windiw_servers.Services
         {
             try
             {
-                var response = await _httpClient.PostAsync($"{_baseUrl}/api/servers/check-all-status", null);
+                var response = await _httpClient.PostAsync($"{_baseUrl}/api/windowsservers/check-all-status", null);
                 response.EnsureSuccessStatusCode();
             }
             catch (Exception ex)
@@ -197,7 +197,7 @@ namespace windiw_servers.Services
                 var json = JsonSerializer.Serialize(request);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
                 
-                var response = await _httpClient.PostAsync($"{_baseUrl}/api/servers/{id}/execute", content);
+                var response = await _httpClient.PostAsync($"{_baseUrl}/api/windowsservers/{id}/execute", content);
                 response.EnsureSuccessStatusCode();
                 
                 var responseJson = await response.Content.ReadAsStringAsync();
@@ -215,7 +215,7 @@ namespace windiw_servers.Services
         {
             try
             {
-                var response = await _httpClient.GetAsync($"{_baseUrl}/api/servers/statistics");
+                var response = await _httpClient.GetAsync($"{_baseUrl}/api/windowsservers/statistics");
                 response.EnsureSuccessStatusCode();
                 
                 var json = await response.Content.ReadAsStringAsync();
@@ -252,7 +252,7 @@ namespace windiw_servers.Services
         public int Id { get; set; }
         public string Name { get; set; } = "";
         public string Address { get; set; } = "";
-        public int Port { get; set; } = 22;
+        public int Port { get; set; } = 3389;
         public string Description { get; set; } = "";
         public string Username { get; set; } = "";
         public string Password { get; set; } = "";
@@ -292,7 +292,7 @@ namespace windiw_servers.Services
     {
         public string Name { get; set; } = "";
         public string Address { get; set; } = "";
-        public int Port { get; set; } = 22;
+        public int Port { get; set; } = 3389;
         public string Description { get; set; } = "";
         public string Username { get; set; } = "";
         public string Password { get; set; } = "";
